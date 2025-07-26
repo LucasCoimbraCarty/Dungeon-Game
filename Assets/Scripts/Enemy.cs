@@ -5,13 +5,13 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private string enemyName;
-    [SerializeField] private float moveSpeed;
+    [SerializeField] protected float moveSpeed;
     private float healthPoint;
     [SerializeField] private float maxHealthPoint;
 
-    private Transform target;
-    [SerializeField] private float distance;
-    private SpriteRenderer spriteRenderer;
+    protected Transform target;
+    [SerializeField] protected float distance;
+    protected SpriteRenderer spriteRenderer;
 
     void Start()
     {
@@ -27,12 +27,12 @@ public class Enemy : MonoBehaviour
         TurnDirection();
     }
 
-    private void Introduction()
+    protected virtual void Introduction()
     {
         Debug.Log("My name is " + enemyName + ". I have " + maxHealthPoint + " health points." + moveSpeed + " is my speed.");
     }
 
-    private void Move()
+    protected virtual void Move()
     {
         if (Vector2.Distance(transform.position, target.position) < distance)
         {
