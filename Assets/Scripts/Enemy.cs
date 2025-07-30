@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -12,6 +11,9 @@ public class Enemy : MonoBehaviour
     protected Transform target;
     [SerializeField] protected float distance;
     protected SpriteRenderer spriteRenderer;
+
+    public Image hpImage; //Red Health Bar
+    public Image hpEffectImage; //White Health Bar Hurting Effect
 
     void Start()
     {
@@ -25,6 +27,18 @@ public class Enemy : MonoBehaviour
     {
         Move();
         TurnDirection();
+        if (healthPoint <= 0)
+        {
+            Death();
+        }
+        Attack();
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            healthPoint -= 10; // Example damage for testing
+            Debug.Log(enemyName + " took damage. Remaining health: " + healthPoint);
+        }
+
+        DisplayHPBar();
     }
 
     protected virtual void Introduction()
@@ -40,7 +54,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void TurnDirection()
+    protected virtual void TurnDirection()
     {
         if (transform.position.x > target.position.x)
         {
@@ -50,6 +64,31 @@ public class Enemy : MonoBehaviour
         {
             spriteRenderer.flipX = false;
         }
+    }
+
+    protected virtual void Attack()
+    {
+
+    }
+
+    protected virtual void Death()
+    {
+        Debug.Log(enemyName + " has been defeated.");
+        Destroy(gameObject);
+    }
+    
+    protected virtual void DisplayHPBar()
+    {
+        
+            hpImage.fillAmount = healthPoint / maxHealthPoint;
+            if(hpEffectImage.fillAmount > hpImage.fillAmount)
+            {
+            hpEffectImage.fillAmount -= 0.005f;
+            }
+            else
+            {
+                hpEffectImage.fillAmount = hpImage.fillAmount; // Parar de diminuir
+            }
     }
     
 }

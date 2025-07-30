@@ -2,16 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Caveira : MonoBehaviour
+public class Caveira : Enemy
 {
-    // Start is called before the first frame update
-    void Start()
+   protected override void Move()
     {
-        
+        base.Move();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void Attack()
     {
         
     }

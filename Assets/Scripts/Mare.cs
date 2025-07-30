@@ -9,7 +9,7 @@ public class Mare : Enemy
 
     void Awake()
     {
-        wayPointTarget = waypoint01;
+        wayPointTarget = waypoint02;
     }
     protected override void Introduction()
     {
@@ -26,15 +26,26 @@ public class Mare : Enemy
             if (Vector2.Distance(transform.position, waypoint01.position) < 0.1f)
             {
                 wayPointTarget = waypoint02;
-                
+                spriteRenderer.flipX = false;
+
             }
             if (Vector2.Distance(transform.position, waypoint02.position) < 0.1f)
             {
                 wayPointTarget = waypoint01;
-               
+                spriteRenderer.flipX = true;
+
             }
             transform.position = Vector2.MoveTowards(transform.position, wayPointTarget.position, moveSpeed * Time.deltaTime);
         }
-       
+
+    }
+
+    protected override void TurnDirection()
+    {
+        if (Vector2.Distance(transform.position, target.position) < distance)
+        { 
+            base.TurnDirection();
+        }
+        
     }
 }
