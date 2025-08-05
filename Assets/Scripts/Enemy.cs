@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
         Attack();
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            healthPoint -= 10; // Example damage for testing
+            healthPoint -= 1;
             Debug.Log(enemyName + " took damage. Remaining health: " + healthPoint);
         }
 
