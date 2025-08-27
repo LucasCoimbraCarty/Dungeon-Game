@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private float moveH, moveV;
     [SerializeField] private float moveSpeed = 2.0f;
     public Animator animator;
+    internal float runSpeed;
 
     private void Awake()
     {
