@@ -5,24 +5,34 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private float points;
-    [SerializeField] private TextMeshProUGUI pointsText;
+    public int dinheiro;
+    public int vida;
+    public TMP_Text dinheiroText;
+    public TMP_Text vidaText;
 
-    // Start is called before the first frame update
     void Start()
     {
-        points = 0f;
-        UpdatePointsText();
+        dinheiro = 0;
+        vida = 1;
+    }
+    public void Adicionar(int valor)
+    {
+        dinheiro += valor;
+        dinheiroText.text = "Dinheiro: " + dinheiro.ToString();
     }
 
-    public void AddPoints(float amount)
+    public void Cura(int life)
     {
-        points += amount;
-        UpdatePointsText();
+        vida += life;
+        vidaText.text = " " + vida.ToString();
+
     }
-    private void UpdatePointsText()
+
+    public void Dano(int life)
     {
-        pointsText.text = points.ToString();
+        vida -= life;
+        vidaText.text = " " + vida.ToString();
+
     }
 
 

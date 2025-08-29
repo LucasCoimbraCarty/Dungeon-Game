@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,17 +6,13 @@ using UnityEngine;
 
 public class ItemSpeed : MonoBehaviour
 {
-    private bool Ativado = false;
-    public PlayerMovement velocidadeJ;
-    public ParticleSystem efeitoV;
-    private void onTrigggerEnter2D(Collider2D other)
+    public PlayerMovement playerMovement;
+    private void OnTrigggerEnter2D(Collider2D other)
     {
-        Ativado = true;
-        if(Ativado == true)
-        {
-            velocidadeJ.runSpeed = 100f;
-            Instantiate(efeitoV, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+        if (other.CompareTag("Player")) {
+            print("entrou");
         }
+          playerMovement.moveSpeed = 10f;
+          Destroy(gameObject);
     }
 }
